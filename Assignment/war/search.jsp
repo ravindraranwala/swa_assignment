@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="/searchs" method="post">
+	<form action="/search" method="post">
 		<div>
-			<textarea name="content" rows="3" cols="60"></textarea>
+			<textarea name="query" rows="3" cols="60"></textarea>
 		</div>
 		<div>
 			<input type="submit" value="Post Query" />

@@ -6,13 +6,13 @@
 
 	<!-- Servlets -->
 	<servlet>
-		<servlet-name>helloServlet</servlet-name>
-		<servlet-class>com.msc.servlet.HelloServlet</servlet-class>
+		<servlet-name>searchServlet</servlet-name>
+		<servlet-class>com.msc.servlet.SearchServlet</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>helloServlet</servlet-name>
-		<url-pattern>/helloServlet</url-pattern>
+		<servlet-name>searchServlet</servlet-name>
+		<url-pattern>/search</url-pattern>
 	</servlet-mapping>
 
 	<!-- Default page to serve -->
