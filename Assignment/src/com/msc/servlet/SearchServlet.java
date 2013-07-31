@@ -35,13 +35,15 @@ public class SearchServlet extends HttpServlet {
 		// Send the query to the nasa data and fetch the results back.
 		try {
 			URL url = new URL(
-					"http://data.nasa.gov/api/get_search_results/?search=saturn");
+					"http://data.nasa.gov/api/get_search_results/?search="
+							+ query);
 			reader = new BufferedReader(new InputStreamReader(url.openStream()));
 
 			String line = null;
 			resultList = new ArrayList<String>();
 
 			while ((line = reader.readLine()) != null) {
+				// TODO: need to filter out the title and content here.
 				// Add the read line into the result list.
 				resultList.add(line + "\n");
 				log.info(line + "\n");
