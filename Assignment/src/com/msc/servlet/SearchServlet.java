@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -38,6 +39,7 @@ public class SearchServlet extends HttpServlet {
 			log.info(jsonObj.toString());
 
 			// Read all the title values from the JSon objects.
+			// log.info(jsonObj.getString("title"));
 		} catch (JSONException e) {
 			throw new RuntimeException(
 					"An exception was thrown while reading from the JSon objec	t",
