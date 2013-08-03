@@ -27,6 +27,7 @@ public class SearchServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		StringBuffer searchResult = new StringBuffer("");
 
 		try {
 			// TODO: Fill the Business logic here.
@@ -45,6 +46,10 @@ public class SearchServlet extends HttpServlet {
 				JSONObject jo1 = jA.getJSONObject(i);
 				String content = jo1.get("content").toString();
 				String title = jo1.getString("title_plain").toString();
+
+				// Append the title and content into the search result.
+				searchResult = searchResult.append(title + "\n" + content
+						+ "\n\n\n\n");
 				log.info("Title: " + title);
 				log.info("Content: " + content);
 			}
@@ -55,5 +60,7 @@ public class SearchServlet extends HttpServlet {
 					e);
 		}
 
+		String helloMsg = "Hello World !";
+		resp.sendRedirect("/search.jsp?searchResult=" + searchResult);
 	}
 }
