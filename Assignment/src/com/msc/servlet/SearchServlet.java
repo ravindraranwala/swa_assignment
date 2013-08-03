@@ -106,5 +106,11 @@ public class SearchServlet extends HttpServlet {
 					+ entity.getProperty("content") + " Date: "
 					+ entity.getProperty("date"));
 		}
+
+		if (results.size() > 10) {
+			for (int i = 10; i < results.size(); i++) {
+				datastore.delete(results.get(i).getKey());
+			}
+		}
 	}
 }
