@@ -1,7 +1,6 @@
 package com.msc.json;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -9,21 +8,30 @@ import java.io.Reader;
 import java.net.URL;
 import java.nio.charset.Charset;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class JsonReader {	
+public class JsonReader {
 	public static void main(String args[]) throws IOException, JSONException {
-		/*
-		 * File f1 = new File("."); String p1 = f1.getCanonicalPath(); p1 =
-		 * p1+"/src/main/resources/content.json"; String content = readFile(p1);
-		 * System.out.println(content); JSONObject jOb = new
-		 * JSONObject(content); //jOb. System.out.println("done");
-		 */
+
 		JSONObject json = readJsonFromUrl("http://data.nasa.gov/api/get_search_results/?search=saturn");
-		System.out.println(json.toString());
+		// System.out.println(json.toString());
 		try {
-			System.out.println(json.get("id"));
+			// System.out.println(json.get("posts"));
+			JSONArray jA = json.getJSONArray("posts");
+			for (int i = 0; i < jA.length(); i++) {
+				JSONObject jo1 = jA.getJSONObject(i);
+				JSONObject jo2 = jo1.getJSONObject("custom_fields");
+				String content = jo1.get("content").toString();
+				String title = jo1.getString("title_plain").toString();
+				String url = jo1.get("url").toString();
+				String moreInfo = jo2.get("more_info_link").toString();
+				System.out.println("content: " + content + "url: " + url
+						+ "\nmoreinfo: " + moreInfo + " title_plain " + title
+						+ "\n");
+			}
+			// System.out.println(json.getJSONArray("posts"));
 		} catch (JSONException ex) {
 			System.out.println(ex.getMessage());
 		}
@@ -51,25 +59,4 @@ public class JsonReader {
 			is.close();
 		}
 	}
-
-	public static String readFile(String fName) throws IOException {
-		BufferedReader br = new BufferedReader(new FileReader(fName));
-		String content = null;
-		try {
-			StringBuilder sb = new StringBuilder();
-			String line = br.readLine();
-
-			while (line != null) {
-				sb.append(line);
-				// sb.append('\n');
-				line = br.readLine();
-			}
-			String everything = sb.toString();
-			content = everything;
-		} finally {
-			br.close();
-		}
-		return content;
-	}
-
 }

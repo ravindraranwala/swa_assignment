@@ -38,11 +38,20 @@ public class SearchServlet extends HttpServlet {
 			JSONObject jsonObj = JsonReader.readJsonFromUrl(strUrl);
 			log.info(jsonObj.toString());
 
-			// Read all the title values from the JSon objects.
-			// log.info(jsonObj.getString("title"));
+			// Read all the title and content values from the JSon objects.
+			JSONObject json = JsonReader.readJsonFromUrl(strUrl);
+			JSONArray jA = json.getJSONArray("posts");
+			for (int i = 0; i < jA.length(); i++) {
+				JSONObject jo1 = jA.getJSONObject(i);
+				String content = jo1.get("content").toString();
+				String title = jo1.getString("title_plain").toString();
+				log.info("Title: " + title);
+				log.info("Content: " + content);
+			}
+
 		} catch (JSONException e) {
 			throw new RuntimeException(
-					"An exception was thrown while reading from the JSon objec	t",
+					"An exception was thrown while reading from the JSon object",
 					e);
 		}
 
