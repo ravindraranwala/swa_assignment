@@ -6,6 +6,34 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Search page</title>
+<style>
+#customers {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+#customers td,#customers th {
+	font-size: 1em;
+	border: 1px solid #98bf21;
+	padding: 3px 7px 2px 7px;
+}
+
+#customers th {
+	font-size: 1.1em;
+	text-align: left;
+	padding-top: 5px;
+	padding-bottom: 4px;
+	background-color: #A7C942;
+	color: #ffffff;
+}
+
+#customers tr.alt td {
+	color: #000000;
+	background-color: #EAF2D3;
+}
+</style>
+
 </head>
 <body>
 	<form action="/search" method="post">
@@ -18,12 +46,26 @@
 	</form>
 	<br />
 	<br />
-
-	<%
-		String searchResult = request.getParameter("searchResult");
-		if (searchResult != null && !searchResult.isEmpty()) {
-			response.getWriter().println(searchResult);
+	<%--
+		try{
+			String searchResult = request.getParameter("searchResult");
+			if (searchResult != null && !searchResult.isEmpty()) {
+		response.setContentType(s)
+		response.getWriter().println(searchResult);
+		
+			}finally{
+		response.getWriter().close()
+			}
 		}
-	%>
+	--%>
+
+	<table id="customers">
+		<c:forEach items="${searchResult}" var="result">
+			<tr>
+				<td>${result.title}</td>
+				<td>${result.content}</td>
+			</tr>
+		</c:forEach>
+	</table>
 </body>
 </html>
