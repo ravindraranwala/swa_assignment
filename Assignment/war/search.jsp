@@ -23,10 +23,6 @@
 		String searchResult = request.getParameter("searchResult");
 		if (searchResult != null && !searchResult.isEmpty()) {
 			response.getWriter().println(searchResult);
-		} else {
-			response.getWriter()
-					.println(
-							"Sorry No Results to display for the given query. Try again !");
 		}
 	%>
 </body>
