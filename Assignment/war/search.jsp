@@ -46,18 +46,6 @@
 	</form>
 	<br />
 	<br />
-	<%--
-		try{
-			String searchResult = request.getParameter("searchResult");
-			if (searchResult != null && !searchResult.isEmpty()) {
-		response.setContentType(s)
-		response.getWriter().println(searchResult);
-		
-			}finally{
-		response.getWriter().close()
-			}
-		}
-	--%>
 
 	<table id="customers">
 		<c:forEach items="${searchResult}" var="result">
