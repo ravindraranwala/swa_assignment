@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 import java.nio.charset.Charset;
 
 import org.json.JSONArray;
@@ -46,12 +48,32 @@ public class JsonReader {
 		return sb.toString();
 	}
 
-	public static JSONObject readJsonFromUrl(String url) throws IOException,
+	public static JSONObject readJsonFromUrl(String urlStr) throws IOException,
 			JSONException {
-		InputStream is = new URL(url).openStream();
+		InputStream is = new URL(urlStr).openStream();
 		try {
 			BufferedReader rd = new BufferedReader(new InputStreamReader(is,
 					Charset.forName("UTF-8")));
+
+			String jsonText = readAll(rd);
+			JSONObject json = new JSONObject(jsonText);
+			return json;
+		} finally {
+			is.close();
+		}
+	}
+
+	public static JSONObject readJsonFromUrlWithNoTimeouts(String urlStr)
+			throws IOException, JSONException {
+		URLConnection connection = new URL(urlStr).openConnection();
+		connection.setConnectTimeout(0);
+		connection.setReadTimeout(0);
+
+		InputStream is = connection.getInputStream();
+
+		try {
+			BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+
 			String jsonText = readAll(rd);
 			JSONObject json = new JSONObject(jsonText);
 			return json;

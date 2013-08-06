@@ -1,9 +1,9 @@
-<!-- Indices written at Sat, 3 Aug 2013 12:20:24 IST -->
+<!-- Indices written at Tue, 6 Aug 2013 20:54:24 IST -->
 
 <datastore-indexes>
 
     <!-- Used 1 time in query history -->
-    <datastore-index kind="SearchResult" ancestor="true" source="auto">
+    <datastore-index kind="SearchQuery" ancestor="true" source="auto">
         <property name="date" direction="desc"/>
     </datastore-index>
 

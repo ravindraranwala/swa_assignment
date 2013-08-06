@@ -55,5 +55,17 @@
 			</tr>
 		</c:forEach>
 	</table>
+
+	<br />
+	<br />
+
+	<table id="customers">
+		<c:forEach items="${latestQueries}" var="query">
+			<tr>
+				<td>${query.queryStr}</td>
+				<td>${query.date}</td>
+			</tr>
+		</c:forEach>
+	</table>
 </body>
 </html>
